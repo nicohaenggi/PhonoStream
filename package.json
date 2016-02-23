@@ -1,0 +1,25 @@
+{
+  "name": "leopard",
+  "version": "0.0.1",
+  "description": "Soundcloud Downloader.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "launch": "npm start"
+  },
+  "author": "Nico Hänggi",
+  "dependencies": {
+    "bluebird": "^3.3.1",
+    "body-parser": "^1.15.0",
+    "cron": "^1.1.0",
+    "delete": "^0.3.0",
+    "express": "~4.13.4",
+    "lodash": "^4.5.1",
+    "mongoose": "^4.4.4",
+    "morgan": "~1.1.1",
+    "node-id3": "0.0.4",
+    "request": "^2.69.0",
+    "string": "^3.3.1",
+    "tmp": "0.0.28"
+  }
+}
