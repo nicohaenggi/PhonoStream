@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 3000,
+    config = require('./config'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     db = require('./core/db'),
@@ -25,6 +25,11 @@ app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// # set port
+var PORT = config.get('env') == "production" ? process.env.PORT : config.get('express:port');
+app.set('port', PORT);
+
+
 // # validate input
 app.param('id', middleware.validation.id);
 
@@ -42,8 +47,8 @@ app.use(middleware.error.notFound);
 /** Listening
  * setting up the server and listening
  */
-app.listen(port);
-console.log("[server: started on port " + port + "]");
+app.listen(app.get('port'));
+console.log("[server: started on port " + app.get('port') + "]");
 
 /** Cron Jobs
  * initializing cron jobs
