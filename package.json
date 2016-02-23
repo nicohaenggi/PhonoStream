@@ -4,7 +4,7 @@
   "description": "Soundcloud Downloader.",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "node server.js",
     "launch": "npm start"
   },
   "author": "Nico Hänggi",
