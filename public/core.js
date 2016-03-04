@@ -1,7 +1,6 @@
 var scotchTodo = angular.module('leopard', []);
 
 function mainController($scope, $http, $timeout) {
-    var baseURL = "http://localhost:3000";
     $scope.colours = false;
     $scope.vinylClosed = false;
     $scope.vinylFlipped = false;
@@ -16,18 +15,16 @@ function mainController($scope, $http, $timeout) {
 
     // when submitting the add form send the text to the node api
     $scope.resolveSoundcloud = function () {
-        var url = baseURL + "/resolve?url=" + $scope.soundcloud.url;
+        var url = "/resolve?url=" + $scope.soundcloud.url;
 
         // start colours
         $scope.colours = true;
 
         $http.get(url)
             .success(function (download) {
-                stopDisk();
                 $scope.soundcloud.url = "";
-                $scope.download.url = baseURL + download.uri;
                 $scope.download.uri = download.uri;
-                console.log($scope.download.url);
+                console.log($scope.download.uri);
 
                 // close vinyl
                 showBack();
