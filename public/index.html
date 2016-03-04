@@ -1,0 +1,48 @@
+<!doctype html>
+<html ng-app="leopard">
+
+<head>
+    <!-- META TAGS -->
+    <meta charset="utf-8">
+
+    <title>leopard soundcloud downloader</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- SCRIPTS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="core.js"></script>
+</head>
+
+<body ng-controller="mainController">
+    <div class="outer">
+        <!-- START FLIP-CONTAINER -->
+        <div class="flip-container" ng-class="{closed: vinylClosed}">
+            <div class="flipper" ng-class="{flipped: vinylFlipped}">
+                <!-- START FRONT -->
+                <div class="front vinyl-cover" ng-class="{colours: colours}">
+                    <div class="cover-wrapper">
+                        <h1 class="cover-title">leopard</h1>
+                        <input class="cover-text" type="text" placeholder="enter soundcloud" ng-model="soundcloud.url" ng-change="urlChanged()">
+                        <button ng-style="buttonHidden" class="cover-btn" type="button" ng-click="resolveSoundcloud()">download</button>
+                    </div>
+                </div>
+                <!-- END FRONT -->
+
+                <!-- START BACK -->
+                <div class="back">
+                    Back sheh
+                </div>
+                <!-- END BACK -->
+            </div>
+        </div>
+        <!-- END FLIP-CONTAINER -->
+        <div class="vinyl-plate" ng-class="{closed: vinylClosed}" ng-style="vinylHidden">
+            <img src="assets/img/plate.svg" alt="Vinyl Plate">
+        </div>
+    </div>
+
+
+</body>
+
+</html>

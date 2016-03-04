@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="243px" height="243px" viewBox="0 0 243 243" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>Vinyl</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Element" sketch:type="MSLayerGroup" transform="translate(-143.000000, -1.000000)">
+            <g id="Vinyl" transform="translate(143.000000, 1.000000)" sketch:type="MSShapeGroup">
+                <g id="Vinyl-Base">
+                    <circle id="Vinyl-Plate" fill="#303F50" cx="121.5" cy="121.5" r="121.5"></circle>
+                    <circle id="Vinyl-Inner" fill="#1E2426" cx="121.5" cy="121.5" r="56.8928571"></circle>
+                    <circle id="Vinyl-Cover" fill="#FA5A3A" cx="121.982143" cy="121.982143" r="41.9464286"></circle>
+                    <circle id="Vinyl-Hole" fill="#FFFFFF" cx="121.982143" cy="121.982143" r="6.26785714"></circle>
+                </g>
+                <g id="Stripes" transform="translate(22.178571, 21.178571)" stroke="#1F2426" stroke-width="2" opacity="0.6">
+                    <circle id="Vinyl-Stripe" cx="100.285714" cy="100.285714" r="71.3571429"></circle>
+                    <circle id="Vinyl-Stripe" cx="100.285714" cy="100.285714" r="86.7857143"></circle>
+                    <circle id="Vinyl-Stripe" cx="100.285714" cy="100.285714" r="100.285714"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

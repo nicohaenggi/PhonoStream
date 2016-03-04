@@ -1,0 +1,173 @@
+/** GENERAL STYLES
+*/
+
+html {
+    background-color: #A8D9E7;
+    height: 100%;
+    width: 100%;
+}
+
+
+/** POSITIONING
+*/
+
+.outer {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 450px;
+    text-align: center;
+    transform: translateY(-50%);
+}
+
+
+/** FLIP ANIMATION
+*/
+
+.flip-container {
+    perspective: 1000;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 999;
+    transform: translateX(-28%);
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+    width: 450px;
+    height: 450px;
+}
+
+.flipper {
+    transition: 1s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+    background-color: aqua;
+}
+
+.back {
+    transform: rotateY(180deg);
+    background-color: red;
+}
+
+
+/** FRONT COVER
+*/
+
+.vinyl-cover {
+    background-color: #FA5A3A;
+}
+
+.cover-wrapper {
+    margin-top: 50%;
+    transform: translateY(-60%);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.cover-title {
+    text-align: center;
+    color: white;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-bottom: 14px;
+}
+
+.cover-text {
+    /* text styling */
+    text-align: center;
+    width: 100%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 23px;
+    letter-spacing: 2px;
+    /* layout */
+    background-color: #304051;
+    padding: 30px 10px;
+    color: white;
+    border: 0;
+    box-sizing: border-box;
+    /* border */
+    border: 5px solid white;
+}
+
+.cover-btn {
+    width: 100%;
+    -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background-color: #ffffff;
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+    color: #666666;
+    padding: 8px 25px;
+    text-decoration: none;
+    /* font styiling */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: #FA5A3A;
+    letter-spacing: 3px;
+    /* border */
+}
+
+.cover-btn:hover {
+    background-color: #CECECE;
+}
+
+.cover-btn:active {
+    background-color: #CECECE;
+}
+
+.colours {
+    background: #FA5A3A url("../img/colours.gif") no-repeat right top;
+    background-size: cover;
+}
+
+.closed {
+    transform: none !important;
+    transition: 1s;
+}
+
+
+/** VINYL PLATE
+*/
+
+.vinyl-plate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 450px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: -1;
+    transform: translateX(28%);
+}
+
+.vinyl-plate img {
+    width: 100%;
+}

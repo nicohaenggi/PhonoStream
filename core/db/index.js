@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    config = require('../config'),
+    config = require('../../config'),
     connectionString = config.get('mongo:url'),
 	options = { server : { auto_reconnect: true, poolSize: 10 } },
 	Promise = require('bluebird'),
