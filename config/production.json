@@ -3,6 +3,6 @@
     	"port": 8000
   	},
 	"mongo" : {
-		"url" : OPENSHIFT_MONGODB_DB_URL
+		"url" : process.env.OPENSHIFT_MONGODB_DB_URL
 	}
 }

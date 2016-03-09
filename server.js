@@ -29,6 +29,7 @@ app.use(bodyParser.json());
 var PORT = config.get('env') == "production" ? process.env.PORT : config.get('express:port');
 app.set('port', PORT);
 
+console.log(config.get('mongo:url'));
 
 // # validate input
 app.param('id', middleware.validation.id);
