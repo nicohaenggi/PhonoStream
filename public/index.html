@@ -5,7 +5,7 @@
     <!-- META TAGS -->
     <meta charset="utf-8">
 
-    <title>leopard soundcloud downloader</title>
+    <title>phonostream soundcloud downloader</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
     <!-- SCRIPTS -->
@@ -15,6 +15,23 @@
 </head>
 
 <body ng-controller="mainController">
+
+    <!-- START HEADER -->
+    <header class="menu" ng-hide="hideMenu">
+        <div class="header-logo">
+            <img src="assets/img/logo.svg" alt="phonostream logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="tos.html">ToS</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="dmca.html">DMCA</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- END HEADER -->
+
     <div class="outer">
         <!-- START FLIP-CONTAINER -->
         <div class="flip-container" ng-class="{closed: vinylClosed}">
@@ -22,16 +39,42 @@
                 <!-- START FRONT -->
                 <div class="front vinyl-cover" ng-class="{colours: colours}">
                     <div class="cover-wrapper">
-                        <h1 class="cover-title">leopard</h1>
                         <input class="cover-text" type="text" placeholder="enter soundcloud" ng-model="soundcloud.url" ng-change="urlChanged()">
-                        <button ng-style="buttonHidden" class="cover-btn" type="button" ng-click="resolveSoundcloud()">download</button>
+                        <button ng-style="buttonHidden" class="cover-btn" type="button" ng-click="resolveSoundcloud()"></button>
                     </div>
                 </div>
                 <!-- END FRONT -->
 
                 <!-- START BACK -->
-                <div class="back">
-                    Back sheh
+                <div class="back vinyl-back">
+                    <div class="back-wrapper">
+                        <div class="back-list clearfix">
+                            <div class="left">
+                                <p class="back-header">Title</p>
+                                <p class="back-entry">{{ download.title }}</p>
+                            </div>
+                            <div class="right">
+                                <p class="back-header">Artist</p>
+                                <p class="back-entry">{{ download.artist }}</p>
+                            </div>
+                        </div>
+                        <div class="back-claimer">
+                            <p>CN1411 / © 2016 PHONOSTREAM / © 2016 THE PHONOSTREAM RECORDS
+                                <br>MAIL@PHONOSTREAM.COM / PHONOSTREAM.COM
+                                <br>TOS / PRIVACY / DCMA / CONTACT
+                                <br>MADE WITH LOVE
+                                <br>LOREM IPSUM SIT DOLOR ET A LOREM IPSUM SIT DOLOR
+                            </p>
+                        </div>
+                        <div class="back-sticker">
+                            <div class="sticker-barcode left">
+                                <img src="assets/img/barcode.png" alt="phonostream barcode">
+                            </div>
+                            <div class="sticker-logo right">
+                                <img src="assets/img/logo.svg" alt="phonostream logo">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- END BACK -->
             </div>
@@ -41,6 +84,7 @@
             <img src="assets/img/plate.svg" alt="Vinyl Plate">
         </div>
     </div>
+
 
 
 </body>

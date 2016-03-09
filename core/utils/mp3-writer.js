@@ -7,7 +7,7 @@ module.exports = function(jsonData, mp3Path, coverPath) {
     var tags = {
         title: jsonData.title,
         artist: jsonData.user.username,
-        album: jsonData.album,
+        album: jsonData.album || jsonData.title,
         composer: jsonData.user.username,
         image: coverPath
     };

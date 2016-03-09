@@ -31,3 +31,12 @@ module.exports.responseForSongId = function (req, res, id) {
     }
     res.status(200).json(response);
 }
+
+module.exports.responseForSong = function (req, res, song) {
+    var response = {
+        "uri" : "/songs/" + song._id,
+        "artist" : song.artist,
+        "title" : song.title
+    }
+    res.status(200).json(response);
+}

@@ -1,6 +1,12 @@
 var scotchTodo = angular.module('leopard', []);
 
-function mainController($scope, $http, $timeout) {
+function mainController($scope, $http, $timeout, $location, $window) {
+    var settings = {
+        gifDuration: 3000
+        , animationDelay: 800
+    }
+    var downloadStatus = 0;
+    $scope.hideMenu = false;
     $scope.colours = false;
     $scope.vinylClosed = false;
     $scope.vinylFlipped = false;
@@ -15,29 +21,32 @@ function mainController($scope, $http, $timeout) {
 
     // when submitting the add form send the text to the node api
     $scope.resolveSoundcloud = function () {
+
+        // clear vars
+        clearState();
+
         var url = "/resolve?url=" + $scope.soundcloud.url;
 
-        // start colours
-        $scope.colours = true;
+        // start GIF
+        startGIF();
+        $scope.soundcloud.url = "loading...";
 
         $http.get(url)
             .success(function (download) {
-                $scope.soundcloud.url = "";
                 $scope.download.uri = download.uri;
-                console.log($scope.download.uri);
-
+                $scope.download.artist = download.artist;
+                $scope.download.title = download.title;
+                console.log('URL: ' + $scope.download.uri);
                 // close vinyl
-                showBack();
+                stopGIF();
 
             })
             .error(function (err) {
-
-                $scope.soundcloud.url = "";
                 $scope.download.err = err.desc;
                 console.log('Error: ' + $scope.download.err);
 
                 // close vinyl
-                showBack();
+                stopGIF();
 
             });
     }
@@ -59,16 +68,56 @@ function mainController($scope, $http, $timeout) {
     function flipVinyl() {
         $scope.vinylFlipped = !$scope.vinylFlipped;
         console.log("[flipping vinyl]");
+
+        // download mp3
+        $window.open($scope.download.uri, "_self");
+    }
+
+    function startGIF() {
+        $scope.colours = true;
+        $timeout(function () {
+            stopGIF();
+        }, settings.gifDuration);
+    }
+
+    function stopGIF() {
+        if (downloadStatus < 1) return downloadStatus++;
+
+        showBack();
     }
 
     function showBack() {
+        if ($scope.download.err != null) {
+            console.log("fail");
+            $scope.soundcloud.url = "stream not found...";
+
+
+            // clear var
+            $scope.colours = false;
+
+            return;
+        }
+        $scope.hideMenu = true;
         $scope.vinylClosed = true;
         $timeout(function () {
+            $scope.soundcloud.url = "";
             $scope.vinylHidden = {
                 'display': 'none'
             }
             $scope.colours = false;
             flipVinyl();
-        }, 1500);
+        }, 1000 + settings.animationDelay);
+    }
+
+    function clearState() {
+        downloadStatus = 0;
+        $scope.hideMenu = false;
+        $scope.colours = false;
+        $scope.vinylClosed = false;
+        $scope.vinylFlipped = false;
+        $scope.download = {};
+        $scope.vinylHidden = {
+            'display': 'block'
+        }
     }
 }

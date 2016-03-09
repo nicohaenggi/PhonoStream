@@ -27,7 +27,7 @@ module.exports.get = function (req, res) {
                 entry.save(function (err) {
                     if (err) return console.log("[mongoose: couldn't update lastHitAt]");
                 });
-                return utils.responseHandler.responseForSongId(req, res, entry._id); // found cached entry
+                return utils.responseHandler.responseForSong(req, res, entry); // found cached entry
             } 
         
             // ## no cached result; create file
@@ -66,7 +66,8 @@ module.exports.get = function (req, res) {
         utils.mp3Writer(data, data.sc_path, data.sc_cover).then(function (path) {
             // save to database
             createEntry(data).then(function (song){
-                return utils.responseHandler.responseForSongId(req, res, song._id); // found song
+                console.log(song);
+                return utils.responseHandler.responseForSong(req, res, song); // found song
             }).catch(function (err){
                 return utils.responseHandler.unknownError(req, res);
             });
@@ -87,6 +88,8 @@ function createEntry(data) {
         createdAt: Date.now(),
         lastHitAt: Date.now(),
         songTitle: data.user.username + " - " + data.title,
+        artist: data.user.username,
+        title: data.title
 
     }
     
