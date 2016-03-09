@@ -8,6 +8,8 @@ var express = require('express'),
     middleware = require('./core/middleware'),
     bodyParser  = require('body-parser');
     
+    console.log(config.get('env'));
+    
 /** Setup Database
  * sets up the database
  */
@@ -28,6 +30,7 @@ app.use(bodyParser.json());
 // # set port
 var PORT = config.get('express:port');
 app.set('port', PORT);
+
 
 console.log(config.get('mongo:url'));
 

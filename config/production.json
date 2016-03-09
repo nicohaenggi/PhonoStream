@@ -4,6 +4,6 @@
         "ip": process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1"
   	},
 	"mongo" : {
-		"url" : process.env.OPENSHIFT_MONGODB_DB_URL
+		"url" : process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream"
 	}
 }

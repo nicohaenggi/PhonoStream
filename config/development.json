@@ -4,6 +4,6 @@
         "ip": "127.0.0.1"
   	},
 	"mongo" : {
-		"url" : "mongodb://localhost/leopard"
+		"url" : "mongodb://localhost/phonostream"
 	}
 }
