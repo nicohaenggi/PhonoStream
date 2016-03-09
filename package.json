@@ -1,12 +1,12 @@
 {
-  "name": "leopard",
+  "name": "phonostream",
   "version": "0.0.1",
-  "description": "Soundcloud Downloader.",
+  "description": "Phonostream Soundcloud Downloader.",
   "scripts": {
     "start": "node server.js"
    },
   "main": "server.js",
-  "author": "Nico Hänggi",
+  "author": "Justin Baker",
   "dependencies": {
     "bluebird": "^3.3.1",
     "body-parser": "^1.15.0",
