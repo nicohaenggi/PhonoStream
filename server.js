@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // # set port
-var PORT = config.get('env') == "production" ? process.env.PORT : config.get('express:port');
+var PORT = config.get('express:port');
 app.set('port', PORT);
 
 console.log(config.get('mongo:url'));
@@ -48,7 +48,7 @@ app.use(middleware.error.notFound);
 /** Listening
  * setting up the server and listening
  */
-app.listen(app.get('port'));
+app.listen(app.get('port'),config.get('express:ip'));
 console.log("[server: started on port " + app.get('port') + "]");
 
 /** Cron Jobs

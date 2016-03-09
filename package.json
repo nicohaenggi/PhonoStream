@@ -2,11 +2,10 @@
   "name": "leopard",
   "version": "0.0.1",
   "description": "Soundcloud Downloader.",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "launch": "npm start"
-  },
+    "start": "node server.js"
+   },
+  "main": "server.js",
   "author": "Nico Hänggi",
   "dependencies": {
     "bluebird": "^3.3.1",
