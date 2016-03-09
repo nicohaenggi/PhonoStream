@@ -7,8 +7,6 @@ var express = require('express'),
     routes = require('./core/routes'),
     middleware = require('./core/middleware'),
     bodyParser = require('body-parser');
-
-console.log(config.get('env'));
       
 // # set port
 var PORT = process.env.OPENSHIFT_NODEJS_PORT || config.get('express:port');
@@ -20,6 +18,8 @@ if (process.env.OPENSHIFT_MONGODB_DB_URL) {
 app.set('port', PORT);
 app.set('ip', IP);
 app.set('mongo', MONGO);
+
+console.log(app.get('mongo'));
 
 /** Setup Database
  * sets up the database
@@ -37,10 +37,6 @@ app.use(bodyParser.urlencoded({ 'extended': 'true' }));
 // # prepare bodyParser (JSON)
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-
-
-console.log(config.get('mongo:url'));
 
 // # validate input
 app.param('id', middleware.validation.id);
