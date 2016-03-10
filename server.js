@@ -6,7 +6,8 @@ var express = require('express'),
     db = require('./core/db'),
     routes = require('./core/routes'),
     middleware = require('./core/middleware'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    mkdir = require('./core/utils').mkdir;
     
 // setting the required keys for openshift
 var PORT = process.env.OPENSHIFT_NODEJS_PORT || config.get('express:port');
@@ -15,6 +16,12 @@ var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "nodejs" || config.get('mongo
 app.set('mongo', MONGO);
 app.set('ip', IP);
 app.set('port', PORT);
+
+// create temp dir
+var TEMP = process.env.OPENSHIFT_DATA_DIR || 'tmp/';
+mkdir.mkdirpSync(TEMP + "cover");
+mkdir.mkdirpSync(TEMP + "songs");
+
 /** Setup Database
  * sets up the database
  */
