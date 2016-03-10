@@ -1,4 +1,5 @@
-var nconf = require('nconf');
+var nconf = require('nconf'),
+    fs = require('fs');
 
 /** Configuration
 * nconf.env('_'): specify a separator for nested keys (instead of the default ':')
@@ -27,6 +28,14 @@ if (process.env.OPENSHIFT_MONGODB_DB_URL) {
     var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream";
     nconf.set('mongo:url', MONGO);
 }
+
+// save new config to file
+nconf.save(function (err) {
+    var environment = nconf.get('NODE:ENV') || 'development';
+    fs.readFile('config/' + environment + '.json', function (err, data) {
+      console.log(JSON.parse(data.toString()));
+    });
+  });
 
 // exporting for use elsewhere
 module.exports = new Config();

@@ -46,7 +46,7 @@ app.use(middleware.error.notFound);
  * setting up the server and listening
  */
 app.listen(config.get('express:port'), config.get('express:ip'));
-console.log("[server started at " +  config.get('express:ip') +  " on port " + app.get('port') + "]");
+console.log("[server started at " +  config.get('express:ip') +  " on port " + config.get('express:port') + "]");
 
 /** Cron Jobs
  * initializing cron jobs
