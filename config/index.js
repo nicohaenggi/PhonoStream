@@ -19,10 +19,13 @@ Config.prototype.get = function(key) {
 }
 
 // setting the required keys for openshift
-nconf.set('express:port',process.env.OPENSHIFT_NODEJS_PORT || nconf.get('express:port'));
-nconf.set('express:ip',process.env.OPENSHIFT_NODEJS_IP || nconf.get('express:ip'));
+var PORT = process.env.OPENSHIFT_NODEJS_PORT || nconf.get('express:port');
+var IP = process.env.OPENSHIFT_NODEJS_IP || nconf.get('express:ip');
+nconf.set('express:port', PORT);
+nconf.set('express:ip',IP);
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
-    nconf.set('mongo:url', process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream");
+    var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream";
+    nconf.set('mongo:url', MONGO);
 }
 
 // exporting for use elsewhere

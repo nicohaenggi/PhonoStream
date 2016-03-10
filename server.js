@@ -8,6 +8,10 @@ var express = require('express'),
     middleware = require('./core/middleware'),
     bodyParser = require('body-parser');
 
+console.log("PORT: " + config.get('express:port'));
+console.log("IP: " + config.get('express:ip'));
+console.log("MONGO: " + config.get('mongo:url'));
+
 /** Setup Database
  * sets up the database
  */
