@@ -12,8 +12,8 @@ SoundcloudDownloader.resolveURL = function (url, callback) {
         if (err) return callback(err, null);
        
         // return track data
-        var data = JSON.parse(body) || {};    
-       return callback(err, data);
+        var data = JSON.parse(body) || {};
+        return callback(err, data);
     });
 }
 
@@ -23,7 +23,7 @@ SoundcloudDownloader.fetchSongDataByTrackId = function (id) {
     return request(streamURL);
 }
 
-SoundcloudDownloader.fetchCoverImageByURL = function(url) {
+SoundcloudDownloader.fetchCoverImageByURL = function (url) {
     url = url.replace('large', 't500x500');
     var coverURL = url + "?client_id=" + clientKey;
     return request(coverURL);

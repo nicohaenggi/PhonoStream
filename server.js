@@ -7,24 +7,11 @@ var express = require('express'),
     routes = require('./core/routes'),
     middleware = require('./core/middleware'),
     bodyParser = require('body-parser');
-      
-// # set port
-var PORT = process.env.OPENSHIFT_NODEJS_PORT || config.get('express:port');
-var IP = process.env.OPENSHIFT_NODEJS_IP || config.get('express:ip');
-var MONGO = config.get('mongo:url');
-if (process.env.OPENSHIFT_MONGODB_DB_URL) {
-    MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream";
-}
-app.set('port', PORT);
-app.set('ip', IP);
-app.set('mongo', MONGO);
-
-console.log(app.get('mongo'));
 
 /** Setup Database
  * sets up the database
  */
-db.setup(app);
+db.setup();
 
 /** Configuration
  * configure the server
@@ -51,12 +38,11 @@ app.get('/resolve', routes.resolve.get);
 // # handle request if not successfull yet; must be a 404 Not Found
 app.use(middleware.error.notFound);
 
-
 /** Listening
  * setting up the server and listening
  */
-app.listen(app.get('port'), app.get('ip'));
-console.log("[server: started on port " + app.get('port') + "]");
+app.listen(config.get('express:port'), config.get('express:ip'));
+console.log("[server started at " +  config.get('express:ip') +  " on port " + app.get('port') + "]");
 
 /** Cron Jobs
  * initializing cron jobs

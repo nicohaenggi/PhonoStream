@@ -14,6 +14,6 @@ module.exports = function(jsonData, mp3Path, coverPath) {
     
     // write the mp3
     var success = nodeID3.write(tags, mp3Path);
-   if(!success) Promise.reject();
+   if(!success) return Promise.reject();
     return Promise.resolve(mp3Path);
 }
