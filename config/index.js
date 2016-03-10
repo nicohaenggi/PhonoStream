@@ -23,11 +23,13 @@ Config.prototype.get = function(key) {
 var PORT = process.env.OPENSHIFT_NODEJS_PORT || nconf.get('express:port');
 var IP = process.env.OPENSHIFT_NODEJS_IP || nconf.get('express:ip');
 nconf.set('express:port', PORT);
-nconf.set('express:ip',IP);
+nconf.set('express:ip', IP);
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
     var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream";
     nconf.set('mongo:url', MONGO);
 }
+
+console.log(PORT + " , " + IP + " , " + process.env.OPENSHIFT_MONGODB_DB_URL );
 
 // save new config to file
 nconf.save(function (err) {
