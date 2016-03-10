@@ -15,7 +15,6 @@ var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "nodejs" || config.get('mongo
 app.set('mongo', MONGO);
 app.set('ip', IP);
 app.set('port', PORT);
-
 /** Setup Database
  * sets up the database
  */

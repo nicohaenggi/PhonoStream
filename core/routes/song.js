@@ -12,7 +12,8 @@ module.exports.get = function (req, res) {
     // fetch data from database
     db.song.getById(req.params.id).then(function (song) {
         if (song == null) return utils.responseHandler.notFound(req, res); // no object found; send Bad Request
-        var fileLoc = "./tmp/songs/" + song.track_id + ".mp3";
+        var TEMP = OPENSHIFT_TMP_DIR || './tmp/';
+        var fileLoc = "songs/" + song.track_id + ".mp3";
         var fileName = song.songTitle + ".mp3";
         res.download(fileLoc, fileName, function () {
             // remove files and entries (DMCA)

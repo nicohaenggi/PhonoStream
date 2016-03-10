@@ -34,7 +34,8 @@ module.exports.get = function (req, res) {
             console.log("[there wasn't any cached result found...]");
             
             // fetch sstream
-            var path = "tmp/songs/" + track.id + ".mp3";
+            var TEMP = OPENSHIFT_TMP_DIR || 'tmp/';
+            var path =  TEMP + "songs/" + track.id + ".mp3";
             var stream = soundcloud.fetchSongDataByTrackId(track.id).pipe(fs.createWriteStream(path));
             stream.on('finish', function () {
                 mp3Saved = true;
@@ -49,7 +50,7 @@ module.exports.get = function (req, res) {
                 imgSaved = true;
                 finishedWriting(track);
             }
-            var coverPath = "tmp/cover/" + track.id + ".jpg";
+            var coverPath = TEMP + "/cover/" + track.id + ".jpg";
             var coverStream = soundcloud.fetchCoverImageByURL(imgUrl).pipe(fs.createWriteStream(coverPath));
             coverStream.on('finish', function () {
                 imgSaved = true;
