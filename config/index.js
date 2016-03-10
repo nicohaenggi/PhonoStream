@@ -19,15 +19,5 @@ Config.prototype.get = function (key) {
     return nconf.get(key);
 }
 
-// console.log(PORT + " , " + IP + " , " + process.env.OPENSHIFT_MONGODB_DB_URL);
-
-// save new config to file
-nconf.save(function (err) {
-    var environment = nconf.get('NODE:ENV')  || 'development';
-    fs.readFile('config/' + environment + '.json', function (err, data) {
-        console.log(JSON.parse(data.toString()));
-    });
-});
-
 // exporting for use elsewhere
 module.exports = new Config();

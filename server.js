@@ -7,15 +7,11 @@ var express = require('express'),
     routes = require('./core/routes'),
     middleware = require('./core/middleware'),
     bodyParser = require('body-parser');
-
-console.log("PORT: " + config.get('express:port'));
-console.log("IP: " + config.get('express:ip'));
-console.log("MONGO: " + config.get('mongo:url'));
-
+    
 // setting the required keys for openshift
 var PORT = process.env.OPENSHIFT_NODEJS_PORT || config.get('express:port');
-var IP = process.env.OPENSHIFT_NODEJS_IP || config.get('express:ip');;
-var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream" || config.get('mongo:url');;
+var IP = process.env.OPENSHIFT_NODEJS_IP || config.get('express:ip');
+var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "nodejs" || config.get('mongo:url');
 app.set('mongo', MONGO);
 app.set('ip', IP);
 app.set('port', PORT);
