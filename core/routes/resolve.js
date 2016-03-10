@@ -34,7 +34,7 @@ module.exports.get = function (req, res) {
             console.log("[there wasn't any cached result found...]");
             
             // fetch sstream
-            var TEMP = OPENSHIFT_TMP_DIR || 'tmp/';
+            var TEMP = process.env.OPENSHIFT_TMP_DIR || 'tmp/';
             var path =  TEMP + "songs/" + track.id + ".mp3";
             var stream = soundcloud.fetchSongDataByTrackId(track.id).pipe(fs.createWriteStream(path));
             stream.on('finish', function () {
