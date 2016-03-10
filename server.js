@@ -12,10 +12,18 @@ console.log("PORT: " + config.get('express:port'));
 console.log("IP: " + config.get('express:ip'));
 console.log("MONGO: " + config.get('mongo:url'));
 
+// setting the required keys for openshift
+var PORT = process.env.OPENSHIFT_NODEJS_PORT || config.get('express:port');
+var IP = process.env.OPENSHIFT_NODEJS_IP || config.get('express:ip');;
+var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream" || config.get('mongo:url');;
+app.set('mongo', MONGO);
+app.set('ip', IP);
+app.set('port', PORT);
+
 /** Setup Database
  * sets up the database
  */
-db.setup();
+db.setup(app);
 
 /** Configuration
  * configure the server
@@ -45,8 +53,8 @@ app.use(middleware.error.notFound);
 /** Listening
  * setting up the server and listening
  */
-app.listen(config.get('express:port'), config.get('express:ip'));
-console.log("[server started at " +  config.get('express:ip') +  " on port " + config.get('express:port') + "]");
+app.listen(app.get('port'), app.get('ip'));
+console.log("[server started at " + app.get('ip') + " on port " + app.get('port') + "]");
 
 /** Cron Jobs
  * initializing cron jobs
