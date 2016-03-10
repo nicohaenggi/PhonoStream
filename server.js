@@ -12,7 +12,10 @@ var express = require('express'),
 // setting the required keys for openshift
 var PORT = process.env.OPENSHIFT_NODEJS_PORT || config.get('express:port');
 var IP = process.env.OPENSHIFT_NODEJS_IP || config.get('express:ip');
-var MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "nodejs" || config.get('mongo:url');
+var MONGO = config.get('mongo:url');
+if(process.env.OPENSHIFT_MONGODB_DB_URL) {
+    MONGO = process.env.OPENSHIFT_MONGODB_DB_URL + "nodejs" || config.get('mongo:url');
+}
 app.set('mongo', MONGO);
 app.set('ip', IP);
 app.set('port', PORT);
