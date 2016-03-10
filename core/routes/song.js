@@ -17,7 +17,7 @@ module.exports.get = function (req, res) {
         var fileName = song.songTitle + ".mp3";
         res.download(fileLoc, fileName, function () {
             // remove files and entries (DMCA)
-            del.promise([fileLoc])
+            del.promise([fileLoc],{force: true})
                 .then(function () {
                     console.log("[cleanup: song mp3 were removed]");
                 });

@@ -112,7 +112,7 @@ function createEntry(data) {
 }
 
 function doCleanUp(path) {
-    del.promise([path])
+    del.promise([path], {force: true})
         .then(function () {
             console.log("[cleanup: cover image was removed]");
         });
