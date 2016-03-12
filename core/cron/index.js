@@ -6,7 +6,7 @@ var CronJob = require('cron').CronJob,
 /** CRONJOB
  * defines a new cronjob which is executed every hour
  */
-var job = new CronJob('* */10 * * * *', function() {
+var job = new CronJob('0 */10 * * * *', function() {
     var date = new Date();
     var EXPIRY = 1000 * 60 * 30; /* expiry date: not older than 30 minutes */
 
