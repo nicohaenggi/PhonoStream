@@ -1,5 +1,5 @@
 module.exports = {
-	"application" : {
-		"name" : "phonostream"
+	application : {
+		name : "phonostream"
 	}
 }

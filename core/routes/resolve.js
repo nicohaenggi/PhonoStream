@@ -4,6 +4,7 @@ var request = require('request'),
     utils = require('../utils'),
     db = require('../db'),
     soundcloud = require('../soundcloud'),
+    config = require('../../config'),
     del = require('delete');
 
 module.exports.get = function (req, res) {
@@ -23,10 +24,7 @@ module.exports.get = function (req, res) {
         // database lookup
         return db.song.getOne({ track_id: track.id }).then(function (entry) {
             if (entry) {
-                entry.lastHitAt = Date.now();
-                entry.save(function (err) {
-                    if (err) return console.log("[mongoose: couldn't update lastHitAt]");
-                });
+                console.log("[found cached entry...]");
                 return utils.responseHandler.responseForSong(req, res, entry); // found cached entry
             } 
         
@@ -34,10 +32,7 @@ module.exports.get = function (req, res) {
             console.log("[there wasn't any cached result found...]");
             
             // fetch sstream
-            console.log(process.env.OPENSHIFT_DATA_DIR);
-            var TEMP = process.env.OPENSHIFT_DATA_DIR || 'tmp/';
-            console.log('TEMP DIR: ' + TEMP);
-            var path =  TEMP + "songs/" + track.id + ".mp3";
+            var path =  config.get('temp:dir') + "songs/" + track.id + ".mp3";
             var stream = soundcloud.fetchSongDataByTrackId(track.id).pipe(fs.createWriteStream(path));
             stream.on('finish', function () {
                 mp3Saved = true;
@@ -52,7 +47,7 @@ module.exports.get = function (req, res) {
                 imgSaved = true;
                 finishedWriting(track);
             }
-            var coverPath = TEMP + "/cover/" + track.id + ".jpg";
+            var coverPath = config.get('temp:dir') + "cover/" + track.id + ".jpg";
             var coverStream = soundcloud.fetchCoverImageByURL(imgUrl).pipe(fs.createWriteStream(coverPath));
             coverStream.on('finish', function () {
                 imgSaved = true;
@@ -72,6 +67,7 @@ module.exports.get = function (req, res) {
         utils.mp3Writer(data, data.sc_path, data.sc_cover).then(function (path) {
             // save to database
             createEntry(data).then(function (song) {
+                console.log('finsished writing');
                 return utils.responseHandler.responseForSong(req, res, song); // found song
             }).catch(function (err) {
                 console.log("[an unknown error occured:\n" + err + "\n]")
@@ -94,7 +90,7 @@ function createEntry(data) {
         track_id: data.id,
         createdAt: Date.now(),
         lastHitAt: Date.now(),
-        songTitle: data.user.username + " - " + data.title,
+        mp3Title: data.user.username + " - " + data.title,
         artist: data.user.username,
         title: data.title
 

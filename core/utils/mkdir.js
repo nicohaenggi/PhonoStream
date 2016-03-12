@@ -1,7 +1,7 @@
 var fs    = require('fs'), 
     path  = require('path');
 
-// does create a dir
+// creates a directory (not nested)
 var mkdirSync = function (path) {
   try {
     fs.mkdirSync(path);
@@ -10,7 +10,8 @@ var mkdirSync = function (path) {
   }
 }
 
-// function in order to create dir
+// export for use elsewhere
+// creates a directory based on the dirpath
 module.exports.mkdirpSync = function (dirpath) {
   var parts = dirpath.split(path.sep);
   for( var i = 1; i <= parts.length; i++ ) {

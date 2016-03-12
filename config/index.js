@@ -1,22 +1,21 @@
-var nconf = require('nconf'),
-    fs = require('fs');
+var _ = require('lodash'),
+    ENV = process.env.ENV_VARIABLE || 'development',
+    defaultConf = require('./default'),
+    customConf = require('./' + ENV);
 
 /** Configuration
-* nconf.env('_'): specify a separator for nested keys (instead of the default ':')
+* configuration of the specific js file
 */
+var conf = {}
+
 function Config() {
-    nconf.argv();
-    nconf.env('_');
-    var environment = nconf.get('NODE:ENV')  || 'development';
-    nconf.file(environment, 'config/' + environment + '.json');
-    nconf.file('default', 'config/default.js');
+    _.extend(conf, defaultConf, customConf);
 }
 
-/** Accessing Values
-* Defining Getter-Method
-*/
-Config.prototype.get = function (key) {
-    return nconf.get(key);
+Config.prototype.get = function (path) {
+    var current = conf;
+    path.split(':').forEach(function (p) { current = current[p]; });
+    return current;
 }
 
 // exporting for use elsewhere

@@ -4,7 +4,7 @@
   "description": "Phonostream Soundcloud Downloader",
   "scripts": {
     "start": "node server.js"
-   },
+  },
   "main": "server.js",
   "author": "Michael Vogler",
   "dependencies": {
@@ -16,7 +16,6 @@
     "lodash": "^4.5.1",
     "mongoose": "^4.4.4",
     "morgan": "~1.1.1",
-    "nconf": "^0.8.4",
     "node-id3": "0.0.4",
     "request": "^2.69.0",
     "string": "^3.3.1",

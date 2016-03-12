@@ -1,30 +1,29 @@
 var db = require('../db'),
-    Promise = require('bluebird'),
     utils = require('../utils'),
+    config = require('../../config'),
     del = require('delete');
 
 /** Song API Routes
 * implements the Song API Routes
 */
 
-module.exports.get = function (req, res) {
+module.exports.get = function(req, res) {
     // :id already validated
     // fetch data from database
-    db.song.getById(req.params.id).then(function (song) {
-        if (song == null) return utils.responseHandler.notFound(req, res); // no object found; send Bad Request
-        var TEMP = process.env.OPENSHIFT_DATA_DIR || './tmp/';
-        var fileLoc = TEMP + "songs/" + song.track_id + ".mp3";
-        var fileName = song.songTitle + ".mp3";
-        res.download(fileLoc, fileName, function () {
-            // remove files and entries (DMCA)
-            del.promise([fileLoc],{force: true})
-                .then(function () {
-                    console.log("[cleanup: song mp3 were removed]");
-                });
-            song.remove();
+    db.song.getById(req.params.id).then(function(song) {
+        if (song == null) return utils.responseHandler.notFound(req, res); // no object found; not found response
+        var fileLoc = config.get('temp:dir') + "songs/" + song.track_id + ".mp3";
+        var fileName = song.mp3Title + ".mp3";
+        res.download(fileLoc, fileName, function() {
+            // update lastHitAt
+            song.lastHitAt = Date.now();
+            song.save(function(err) {
+                if (err) return console.log("[mongoose: couldn't update lastHitAt]");
+                console.log("[mongoose: updated lastHitAt]");
+            });
         });
 
-    }).catch(function (err) {
-        return utils.responseHandler.unknownError(req, res); // internal error
+    }).catch(function(err) {
+        return utils.responseHandler.unknownError(req, res); // internal error occured
     });
 }
