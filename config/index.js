@@ -1,5 +1,5 @@
 var _ = require('lodash'),
-    ENV = process.env.ENV_VARIABLE || 'development',
+    ENV = process.env.NODE_ENV || 'development',
     defaultConf = require('./default'),
     customConf = require('./' + ENV);
 

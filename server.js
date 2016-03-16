@@ -13,7 +13,7 @@ var express = require('express'),
  * creates the permanent cover/songs directory
  */
 
-console.log("[Server running at " + config.get('env') + "]");
+console.log("[Server running at " + config.get('env') + "] ("+ process.env.NODE_ENV + ")");
 
 mkdir.mkdirpSync(config.get('temp:dir') + "cover");
 mkdir.mkdirpSync(config.get('temp:dir') + "songs");
