@@ -5,9 +5,9 @@ module.exports = {
         ip: "46.101.109.42"
     },
     mongo: {
-        url : process.env.OPENSHIFT_MONGODB_DB_URL + "phonostream"
+        url : "mongodb://127.0.0.1/" + "phonostream"
     },
     temp : {
-        dir: process.env.OPENSHIFT_DATA_DIR
+        dir: "/tmp/"
     }
 }
