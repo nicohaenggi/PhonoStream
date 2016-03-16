@@ -20,17 +20,30 @@ html {
     transform: translateY(-50%);
 }
 
+.content-wrapper {
+    width: 702px;
+    margin: 0 auto;
+}
+
 
 /** MENU
 */
 
 .menu {
-    position: absolute;
-    bottom: 85%;
-    right: 0;
-    left: 0;
     margin: 0 auto;
     width: 702px;
+}
+
+.abs {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    left: 0;
+}
+
+.top {
+    margin-top: 40px;
+    position: relative;
 }
 
 .menu ul {
@@ -56,6 +69,12 @@ html {
 .menu li a:hover {
     color: white;
 }
+
+ul .active a {
+    color: white;
+    font-weight: 800;
+}
+
 
 /** FLIP ANIMATION
 */
@@ -311,6 +330,7 @@ html {
     color: white;
 }
 
+
 /** 404 PAGE
 */
 
@@ -334,7 +354,6 @@ html {
     font-size: 55px;
     padding: 0;
     margin: 0;
-
 }
 
 .error-wrapper h3 {
@@ -342,6 +361,61 @@ html {
     padding: 0;
     margin: 0;
 }
+
+
+/** CONTENT
+*/
+
+.content {
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.content h2,
+.content h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.content h3 {
+    font-size: 16px;
+}
+
+.content p,
+.content li {
+    font-weight: 100;
+    letter-spacing: 1px;
+    margin: 20px 0;
+}
+
+.contact p {
+    text-align: center;
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    padding: 0;
+    margin: -12px 0;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.contact .before {
+    margin-top: 120px;
+    font-style: oblique;
+    font-weight: 100;
+    letter-spacing: 2px;
+}
+
+.contact .mail {
+    font-weight: 400;
+}
+
+.contact .heart {
+    font-size: 300px;
+    margin-top: -100px;
+}
+
 
 /** DISABLE FOCUS
 */
