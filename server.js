@@ -12,6 +12,9 @@ var express = require('express'),
 /** FOLDER STRUCTURE
  * creates the permanent cover/songs directory
  */
+
+console.log("[Server running at " + config.get('env') "]");
+
 mkdir.mkdirpSync(config.get('temp:dir') + "cover");
 mkdir.mkdirpSync(config.get('temp:dir') + "songs");
 
