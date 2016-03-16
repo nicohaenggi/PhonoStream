@@ -8,6 +8,6 @@ module.exports = {
         url : "mongodb://127.0.0.1/" + "phonostream"
     },
     temp : {
-        dir: "/tmp/"
+        dir: "/var/www/phonostream.com/tmp"
     }
 }
