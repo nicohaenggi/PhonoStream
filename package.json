@@ -3,10 +3,10 @@
   "version": "0.0.2",
   "description": "Phonostream Soundcloud Downloader",
   "scripts": {
-    "start": "node server.js"
+    "start": "NODE_ENV=development node server.js"
   },
   "main": "server.js",
-  "author": "Michael Vogler",
+  "author": "Nico Haenggi",
   "dependencies": {
     "bluebird": "^3.3.1",
     "body-parser": "^1.15.0",
