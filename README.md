@@ -1,4 +1,5 @@
 # Disclaimer
+![PhonoStream Usage](https://github.com/nicohaenggi/PhonoStream/blob/master/doc/phonostream.gif)
 [PhonoStream](https://github.com/nicohaenggi/PhonoStream) is intended for academic purposes and should not be used to exploit the SoundCloud API as it is against the TOS of SoundCloud. Use the Downloader for **personal purposes** only.
 
 # PhonoStream
